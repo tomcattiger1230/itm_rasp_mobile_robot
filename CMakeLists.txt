@@ -38,6 +38,12 @@ ament_target_dependencies(uart_control rclcpp geometry_msgs )
 install(TARGETS uart_control
   DESTINATION lib/${PROJECT_NAME})
 
+# install Launch files
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME}
+)
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights

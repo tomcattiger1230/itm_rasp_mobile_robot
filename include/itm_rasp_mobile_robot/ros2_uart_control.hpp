@@ -2,7 +2,7 @@
  * @Author: Wei Luo
  * @Date: 2022-09-09 13:44:48
  * @LastEditors: Wei Luo
- * @LastEditTime: 2022-09-09 18:22:05
+ * @LastEditTime: 2022-09-12 09:31:20
  * @Note: Note
  */
 
@@ -20,7 +20,7 @@
 #include <fcntl.h>			//Used for UART
 #include <termios.h>		//Used for UART
 
-#include <wiringSerial.h>
+// #include <wiringSerial.h>
 
 class UartControl: public rclcpp::Node{
     public:
