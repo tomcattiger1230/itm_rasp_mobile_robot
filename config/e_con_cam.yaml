@@ -1,11 +1,11 @@
 /**:
     ros__parameters:
       video_device: "/dev/video2"
-      framerate: 30.0
+      framerate: 100.0
       io_method: "mmap"
       frame_id: "camera"
-      pixel_format: "yuyv"
-      color_format: "yuv422p"
+      pixel_format: "mjpeg"
+      color_format: "uvyv422"
       image_width: 640
       image_height: 480
       camera_name: "logi720"
