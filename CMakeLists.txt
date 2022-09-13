@@ -41,6 +41,7 @@ install(TARGETS uart_control
 # install Launch files
 install(DIRECTORY
   launch
+  config
   DESTINATION share/${PROJECT_NAME}
 )
 
