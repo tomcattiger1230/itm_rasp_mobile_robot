@@ -2,11 +2,7 @@
  * @Author: Wei Luo
  * @Date: 2022-09-09 13:44:48
  * @LastEditors: Wei Luo
-<<<<<<< HEAD
- * @LastEditTime: 2022-09-09 23:53:36
-=======
- * @LastEditTime: 2022-09-12 09:31:20
->>>>>>> bb4cd18c25a11211933178879acd183ade16ffd5
+ * @LastEditTime: 2022-09-15 21:47:14
  * @Note: Note
  */
 
@@ -24,10 +20,6 @@
 #include <fcntl.h>			//Used for UART
 #include <termios.h>		//Used for UART
 
-<<<<<<< HEAD
-=======
-// #include <wiringSerial.h>
->>>>>>> bb4cd18c25a11211933178879acd183ade16ffd5
 
 class UartControl: public rclcpp::Node{
     public:
