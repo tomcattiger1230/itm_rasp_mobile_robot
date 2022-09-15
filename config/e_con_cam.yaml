@@ -1,0 +1,12 @@
+/**:
+    ros__parameters:
+      video_device: "/dev/video2"
+      framerate: 100.0
+      io_method: "mmap"
+      frame_id: "camera"
+      pixel_format: "mjpeg"
+      color_format: "uvyv422"
+      image_width: 640
+      image_height: 480
+      camera_name: "logi720"
+      camera_info_url: "package://itm_rasp_mobile_robot/config/camera_info.yaml"
