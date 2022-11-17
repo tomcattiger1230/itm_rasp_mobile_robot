@@ -2,7 +2,7 @@
  * @Author: Wei Luo
  * @Date: 2022-09-09 13:44:48
  * @LastEditors: Wei Luo
- * @LastEditTime: 2022-09-15 21:47:14
+ * @LastEditTime: 2022-11-17 13:21:12
  * @Note: Note
  */
 
@@ -13,12 +13,12 @@
 // ros2
 #include "rclcpp/rclcpp.hpp"
 #include <geometry_msgs/msg/twist_stamped.hpp>
+#include <serial_driver/serial_port.hpp>
 
-// uart
 #include <stdio.h>
-#include <unistd.h>			//Used for UART
-#include <fcntl.h>			//Used for UART
-#include <termios.h>		//Used for UART
+#include <vector>
+#include <iostream>
+
 
 
 class UartControl: public rclcpp::Node{
