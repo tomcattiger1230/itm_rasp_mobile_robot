@@ -1,0 +1,5 @@
+<launch>
+    <node name="cmd_serial" pkg="itm_rasp_mobile_robot" type="robot_serial_cmd" output="screen" >
+            <param name="serial_port" value="/dev/ttyS0"/>
+    </node>
+</launch>

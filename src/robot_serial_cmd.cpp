@@ -2,7 +2,7 @@
  * @Author: Wei Luo
  * @Date: 2022-11-16 16:25:17
  * @LastEditors: Wei Luo
- * @LastEditTime: 2022-11-17 09:43:15
+ * @LastEditTime: 2022-11-17 13:04:50
  * @Note: Note
  */
 
@@ -39,7 +39,7 @@ SerialCMD::SerialCMD(const ros::NodeHandle &nh,
   }
 
   if (sp.isOpen()) {
-    ROS_INFO_STREAM(serial_port + "is opened");
+    ROS_INFO_STREAM(serial_port + " is opened");
     is_initialized = true;
   }
 }
@@ -52,6 +52,8 @@ void SerialCMD::robot_velocity_cmd_callback(
     got_velocity_cmd = true;
     ROS_INFO_ONCE("Got the first velocity command.");
   }
+    ROS_INFO_ONCE("Got the first velocity command.");
+
 
   received_cmd[0] = v_cmd->twist.linear.x;
   received_cmd[1] = v_cmd->twist.linear.y;
@@ -64,7 +66,7 @@ void SerialCMD::run() {
     std::string cmd_string_;
     for (int i = 0; i < 3; i++) {
         cmd_string_ += std::to_string(received_cmd[i]);
-        cmd_string_ += ";";
+        cmd_string_ += std::string(";");
     }
     ROS_INFO("Message send to serial: %s", cmd_string_.c_str());
 
@@ -87,6 +89,7 @@ int main(int argc, char **argv) {
     } else {
       break;
     }
+    ros::spinOnce();
     rate.sleep();
 
   }
