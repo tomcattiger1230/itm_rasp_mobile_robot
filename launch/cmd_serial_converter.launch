@@ -1,5 +1,6 @@
 <launch>
     <node name="cmd_serial" pkg="itm_rasp_mobile_robot" type="robot_serial_cmd" output="screen" >
             <param name="serial_port" value="/dev/ttyS0"/>
+            <remap from="/robot_cmd" to="/hera_robot_2" />
     </node>
 </launch>
