@@ -2,7 +2,7 @@
  * @Author: Wei Luo
  * @Date: 2022-11-16 16:25:17
  * @LastEditors: Wei Luo
- * @LastEditTime: 2022-11-17 13:28:41
+ * @LastEditTime: 2022-11-21 13:33:18
  * @Note: Note
  */
 
@@ -72,6 +72,7 @@ void SerialCMD::run() {
 
     std::vector<uint8_t> cmd_string_vector_(cmd_string_.begin(), cmd_string_.end());
     uint8_t *cmd_p = &cmd_string_vector_[0];
+    std::cout<< cmd_p << std::endl;
     sp.write(cmd_p, sizeof(cmd_p));
   }
 }

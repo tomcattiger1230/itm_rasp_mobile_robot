@@ -1,6 +1,8 @@
 <launch>
+    <arg name="port" default="/dev/ttyUSB0"/>
+    <arg name="sub_topic" default="/hera_robot_2"/>
     <node name="cmd_serial" pkg="itm_rasp_mobile_robot" type="robot_serial_cmd" output="screen" >
-            <param name="serial_port" value="/dev/ttyS0"/>
-            <remap from="/robot_cmd" to="/hera_robot_2" />
+            <param name="serial_port" value="$(arg port)"/>
+            <remap from="/robot_cmd" to="$(arg sub_topic)" />
     </node>
 </launch>
