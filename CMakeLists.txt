@@ -20,7 +20,7 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
-find_package(serial_driver REQUIRED)
+find_package(serial REQUIRED)
 
 
 find_package(PkgConfig)
@@ -31,10 +31,10 @@ add_executable(uart_control src/ros2_uart_control.cpp)
 target_include_directories(uart_control PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
-ament_target_dependencies(uart_control rclcpp geometry_msgs )
+ament_target_dependencies(uart_control rclcpp geometry_msgs serial)
 # target_link_libraries(
-#   robot_joystick_control_lcm
-#     lcm
+#   uart_control
+#     serial
 # )
 install(TARGETS uart_control
   DESTINATION lib/${PROJECT_NAME})

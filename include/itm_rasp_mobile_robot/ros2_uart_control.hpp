@@ -2,7 +2,7 @@
  * @Author: Wei Luo
  * @Date: 2022-09-09 13:44:48
  * @LastEditors: Wei Luo
- * @LastEditTime: 2022-11-17 13:21:12
+ * @LastEditTime: 2022-11-20 11:58:15
  * @Note: Note
  */
 
@@ -13,7 +13,7 @@
 // ros2
 #include "rclcpp/rclcpp.hpp"
 #include <geometry_msgs/msg/twist_stamped.hpp>
-#include <serial_driver/serial_port.hpp>
+#include <serial/serial.h>
 
 #include <stdio.h>
 #include <vector>
