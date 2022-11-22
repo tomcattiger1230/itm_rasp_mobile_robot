@@ -2,7 +2,7 @@
  * @Author: Wei Luo
  * @Date: 2022-11-16 16:25:17
  * @LastEditors: Wei Luo
- * @LastEditTime: 2022-11-21 13:33:18
+ * @LastEditTime: 2022-11-22 13:24:49
  * @Note: Note
  */
 
@@ -52,8 +52,7 @@ void SerialCMD::robot_velocity_cmd_callback(
     got_velocity_cmd = true;
     ROS_INFO_ONCE("Got the first velocity command.");
   }
-    ROS_INFO_ONCE("Got the first velocity command.");
-
+  ROS_INFO_ONCE("Got the first velocity command.");
 
   received_cmd[0] = v_cmd->twist.linear.x;
   received_cmd[1] = v_cmd->twist.linear.y;
@@ -65,15 +64,22 @@ void SerialCMD::run() {
     // convert velocity command to string format
     std::string cmd_string_;
     for (int i = 0; i < 3; i++) {
-        cmd_string_ += std::to_string(received_cmd[i]);
-        cmd_string_ += std::string(";");
-    }
-    ROS_INFO("Message send to serial: %s", cmd_string_.c_str());
+      std::stringstream buf;
+      // buf.precision(3);
+      // buf.setf(std::ios::fixed);
+      buf << received_cmd[i];
+      // auto buf = std::to_string(received_cmd[i]);
 
-    std::vector<uint8_t> cmd_string_vector_(cmd_string_.begin(), cmd_string_.end());
-    uint8_t *cmd_p = &cmd_string_vector_[0];
-    std::cout<< cmd_p << std::endl;
-    sp.write(cmd_p, sizeof(cmd_p));
+      cmd_string_ += buf.str();
+      cmd_string_ += std::string(";");
+    }
+    // need check sum according to Beagelbone ?
+    // cmd_string_ +=
+    //     std::to_string(received_cmd[0] + received_cmd[1] + received_cmd[2]);
+    cmd_string_+="\n";
+    // ROS_INFO("Message send to serial: %s", cmd_string_.c_str());
+    sp.write(cmd_string_);
+
   }
 }
 
@@ -81,7 +87,7 @@ int main(int argc, char **argv) {
   ros::init(argc, argv, "RobotCMDSerial");
   ros::NodeHandle nh_node, private_nh_node("~");
 
-  ros::Rate rate(100);
+  ros::Rate rate(50);
   SerialCMD serial_obj(nh_node, private_nh_node);
 
   while (ros::ok()) {
@@ -92,7 +98,6 @@ int main(int argc, char **argv) {
     }
     ros::spinOnce();
     rate.sleep();
-
   }
   ROS_INFO("Serial port is closed");
   return 0;
