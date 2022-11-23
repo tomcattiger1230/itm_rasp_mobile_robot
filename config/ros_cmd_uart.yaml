@@ -1,0 +1,5 @@
+/**:
+  ros__parameters:
+    port: "/dev/ttyS0"
+    baudrate: 115200
+    ros_cmd_topic: "/cmd_vel"

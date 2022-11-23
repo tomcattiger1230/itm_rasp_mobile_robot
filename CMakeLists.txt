@@ -32,10 +32,7 @@ target_include_directories(uart_control PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
 ament_target_dependencies(uart_control rclcpp geometry_msgs serial)
-# target_link_libraries(
-#   uart_control
-#     serial
-# )
+
 install(TARGETS uart_control
   DESTINATION lib/${PROJECT_NAME})
 
