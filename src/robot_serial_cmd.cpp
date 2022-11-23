@@ -2,7 +2,7 @@
  * @Author: Wei Luo
  * @Date: 2022-11-16 16:25:17
  * @LastEditors: Wei Luo
- * @LastEditTime: 2022-11-22 13:24:49
+ * @LastEditTime: 2022-11-23 14:22:09
  * @Note: Note
  */
 
@@ -63,7 +63,7 @@ void SerialCMD::run() {
     // convert velocity command to string format
     std::string cmd_string_;
     for (int i = 0; i < 3; i++) {
-      std::stringstream buf;
+      // std::stringstream buf;
       // buf.precision(3);
       // buf.setf(std::ios::fixed);
       /* buf << received_cmd[i]; */
