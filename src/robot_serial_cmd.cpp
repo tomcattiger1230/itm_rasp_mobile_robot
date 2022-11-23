@@ -52,7 +52,6 @@ void SerialCMD::robot_velocity_cmd_callback(
     got_velocity_cmd = true;
     ROS_INFO_ONCE("Got the first velocity command.");
   }
-  ROS_INFO_ONCE("Got the first velocity command.");
 
   received_cmd[0] = v_cmd->twist.linear.x;
   received_cmd[1] = v_cmd->twist.linear.y;
@@ -67,15 +66,17 @@ void SerialCMD::run() {
       std::stringstream buf;
       // buf.precision(3);
       // buf.setf(std::ios::fixed);
-      buf << received_cmd[i];
+      /* buf << received_cmd[i]; */
       // auto buf = std::to_string(received_cmd[i]);
-
-      cmd_string_ += buf.str();
+      /* cmd_string_ += buf.str(); */
+      cmd_string_ += std::to_string(received_cmd[i]);
       cmd_string_ += std::string(";");
     }
     // need check sum according to Beagelbone ?
     // cmd_string_ +=
     //     std::to_string(received_cmd[0] + received_cmd[1] + received_cmd[2]);
+
+    // very import with "\n" !
     cmd_string_+="\n";
     // ROS_INFO("Message send to serial: %s", cmd_string_.c_str());
     sp.write(cmd_string_);
