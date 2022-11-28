@@ -2,7 +2,7 @@
  * @Author: Wei Luo
  * @Date: 2022-11-16 16:25:17
  * @LastEditors: Wei Luo
- * @LastEditTime: 2022-11-24 07:48:22
+ * @LastEditTime: 2022-11-28 10:20:31
  * @Note: Note
  */
 
@@ -23,9 +23,11 @@ SerialCMD::SerialCMD(const ros::NodeHandle &nh,
   else
     baud_rate = 115200;
 
+  /* A subscriber to the topic `/robot_cmd` with a queue size of 10. */
   robot_cmd_sub_ = nh_.subscribe<geometry_msgs::TwistStamped>(
       "/robot_cmd", 10, &SerialCMD::robot_velocity_cmd_callback, this);
 
+  /* Setting up the serial port. */
   serial::Timeout to = serial::Timeout::simpleTimeout(100);
   sp.setPort(serial_port);
   sp.setBaudrate(baud_rate);
@@ -46,6 +48,11 @@ SerialCMD::SerialCMD(const ros::NodeHandle &nh,
 
 SerialCMD::~SerialCMD() {}
 
+/**
+ * It takes in a velocity command, and stores it in the `received_cmd` array
+ *
+ * @param v_cmd The velocity command received from the controller.
+ */
 void SerialCMD::robot_velocity_cmd_callback(
     const geometry_msgs::TwistStamped::ConstPtr &v_cmd) {
   if (!got_velocity_cmd) {
@@ -58,6 +65,9 @@ void SerialCMD::robot_velocity_cmd_callback(
   received_cmd[2] = v_cmd->twist.angular.z;
 }
 
+/**
+ * It converts the velocity command to a string, and then sends it to the serial port
+ */
 void SerialCMD::run() {
   if (got_velocity_cmd) {
     // convert velocity command to string format
@@ -88,6 +98,7 @@ int main(int argc, char **argv) {
   ros::init(argc, argv, "RobotCMDSerial");
   ros::NodeHandle nh_node, private_nh_node("~");
 
+  /* It sets the frequency of the loop to 50Hz. */
   ros::Rate rate(50);
   SerialCMD serial_obj(nh_node, private_nh_node);
 
