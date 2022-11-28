@@ -4,7 +4,7 @@ This package is for controlling the ITM mobile robots on a Raspberry Pi onboard 
 
 ## Communicating through UART
 
-Based on the work from Dr. Ebel and Mr. Rosenfelder, one can directly communicate the onboard computer Beaglebone on the ITM mobile robots through UART. The ROS commands can be transferred through the UART without any special packages on the Beaglebone. One can launch the program
+Based on the work from Dr. Ebel and Mr. Rosenfelder, one can directly communicate with the onboard computer Beaglebone on the ITM mobile robots through UART. The ROS commands can be transferred through the UART without any special packages on the Beaglebone. One can launch the program
 
 ```bash
 roslaunch itm_rasp_mobile_robot cmd_serial_converter.launch
